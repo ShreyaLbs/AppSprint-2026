@@ -26,161 +26,118 @@
 
 ---
 
-## 📌 Quick Info
+# SymptomBridge
 
-| | |
-|---|---|
-| 📅 Start Date | August 2, 2026 |
-| 🏁 Submission Deadline | August 16, 2026 at 11:59 PM |
-| 🎤 Project Expo | offline |
-| 👥 Team Size | 2–4 members (solo allowed) |
-| 🛠️ Recommended Framework | Flutter (Any mobile framework allowed) |
-| 📍 Mode | Fully Virtual |
-| 🏫 Organized by | App Development IG · muLearn LBSITW |
+## Project Name
+SymptomBridge
 
----
+## Team Information
+- **Team:** Solo
+- **Name:** Shreya Ajith
+- **Institution:** LBS Institute of Technology for Women (LBSITW), Thiruvananthapuram
+- **Track:** HealthTech
 
-## 📅 Timeline
+## Problem Statement
+Rural and low-connectivity communities often lack quick, reliable ways to
+judge how urgent a health symptom is before reaching a doctor. Low literacy,
+limited internet access, and language barriers make most existing
+symptom-checker apps impractical for these users — they assume constant
+connectivity, high literacy, and English-only interfaces.
 
-| Phase | Duration | Goal |
-|-------|----------|------|
-| 🚀 Kickoff | **Augt 2** | Challenge begins |
-| 🔨 Week 1 | **Aug 2 – Aug 2** | Build core features |
-| ✨ Week 2 | **Aug 4 – Aug 14** | Polish, test, and record your demo |
-| 📦 Wrap Up | **Aug 15** | Finalize and submit early to avoid last-minute issues |
-| 🏆 Submission | **Aug 16** | Final deadline & project showcase |
+## Solution
+SymptomBridge is an **offline-first mobile app that provides urgency triage
+guidance — not diagnosis.** Users select their symptoms, answer a few simple
+follow-up questions (voice or tap), and receive a clear, color-coded urgency
+result: self-care, see a doctor soon, or go to a hospital now — along with
+basic next-step guidance for that level.
 
+The app works fully offline, supports Malayalam and English, and is
+designed around large, icon-based, low-literacy-friendly interactions.
 
----
+## Features
+- **12-symptom triage flow** with follow-up questions per symptom
+- **Hybrid urgency engine**: deterministic clinical red-flag rules act as an
+  authoritative safety layer for known-dangerous symptom combinations; a
+  trained Random Forest classifier (transpiled to run natively on-device,
+  no external ML runtime needed) adds nuanced judgment and a confidence
+  score for cases that don't hit a hard red flag
+- **Explainability panel** — every result shows *why* it was reached, in
+  plain language, including model confidence when the ML path is used
+- **Multi-symptom combination detection** — some symptom pairs (e.g. fever +
+  breathing difficulty) are escalated even when neither alone would be,
+  reflecting that combined symptoms can be more serious than either in
+  isolation
+- **Basic intervention/first-aid guidance** per urgency level
+- **Offline PHC/hospital directory pointer** (general guidance, not a live
+  location lookup) on urgent results, plus India's national emergency
+  number
+- **Voice input** for symptom selection and answers, with a clear fallback
+  message when unavailable offline (manual tap always works)
+- **Malayalam and English** toggle across the entire app
+- **Local history** of past checks, stored on-device only
+- **Fully offline core flow** — no network calls required to use the app
 
-## 🎯 Challenge Tracks
+## Tech Stack
+- **Framework:** Expo (React Native), Expo Router
+- **ML:** scikit-learn (RandomForestClassifier) trained in Python, transpiled
+  to plain JavaScript via m2cgen for on-device inference with no external ML
+  runtime dependency
+- **Storage:** AsyncStorage (local history)
+- **i18n:** i18next + react-i18next (English/Malayalam)
+- **Voice:** @react-native-voice/voice
+- **Fonts:** Noto Sans (Google Fonts) — covers both Latin and Malayalam script
+- **Icons:** @expo/vector-icons
 
-Pick one track. Build an app that solves a real problem within it.
+## AI Tool Disclosure
+This project was built with assistance from:
+- **Anthropic's Claude** — used for architecture planning, dataset design,
+  training data generation and labeling, model training and evaluation,
+  the model-to-JavaScript export pipeline, design direction, and debugging
+  guidance throughout the build
+- **Google's Antigravity** — used to generate and iterate on the app's UI
+  and React Native implementation, based on detailed specifications and
+  data contracts provided during development
 
-| Track | Focus Area | Example Ideas |
-|---|---|---|
-| 📚 EduTech | Learning & student life | Quiz app, attendance tracker, study planner |
-| 🏥 HealthTech | Health & wellness | Medication reminder, mental health journal |
-| 🏙️ CivicTech | Community & campus | Bus tracker, canteen ordering, lost & found |
-| 🌾 AgriTech / LocalTech | Farmers & local businesses | Crop disease id, market price tracker |
-| 💡 Open Innovation | Any real-world problem | Must justify problem clearly |
+All AI-assisted code and design decisions were reviewed, tested, and are
+understood by the developer, including the ML pipeline, the triage engine's
+hybrid decision logic, and the app's screen implementations.
 
----
-
-## 📋 Submission Checklist
-
-Before submitting, make sure you have all of these:
-
-- [ ] ✅ Working APK file (uploaded to GitHub Releases)
-- [ ] ✅ Public GitHub repository forked from this repo
-- [ ] ✅ README with problem statement, Solution, features, screenshots, TechStack, Installation, Team members 
-- [ ] ✅ Demo video ( less than 2 minutes, uploaded to YouTube/Drive)
-- [ ] ✅ Repository topic `appsprint-2026` added (GitHub → About → Topics → add AppSprint 2026)
-- [ ] ✅ AppSprint badge in your README (copy from below)
-- [ ] ✅ Presentation (5–8 slides) uploaded to repo
-- [ ] ✅ README updated using README_TEMPLATE.md
-
----
-
-## ⚖️ Judging Criteria
-
-Projects will be evaluated by the App Development IG panel using the rubric below.
-
-| Criterion | Points |
-|---|---|
-| Problem Relevance | 20 |
-| Innovation & Creativity | 20 |
-| Technical Execution | 25 |
-| UI/UX Design | 15 |
-| GitHub Activity | 10 |
-| Demo & Presentation | 10 |
-| **Total** | **100** |
-
-**Bonus:** Play Store submission +3 · Accessibility features +2 · Offline support +2
-
-## 📚 Resources
-
-- [Hackathon Guidelines](GUIDELINES.md)
-- [README Template](README_TEMPLATE.md)
-- [Contribution Guide](CONTRIBUTING.md)
-
-
----
-
-## 🚀 How to Participate
-
-### Step 1 — Fork this repository
-Click the **Fork** button at the top right of this page.
-
-### Step 2 — Register
-Fill the [registration form](YOUR_REGISTRATION_FORM_LINK) with your team details. You can submit your repository link later in the submission form.
-
-### Step 3 — Build
+## Installation Instructions
 ```bash
-# Clone your forked repo
-git clone https://github.com/YOUR-USERNAME/AppSprint-2025
-
-# Create your project inside it
-Flutter users:
-flutter create my_appsprint_app
-cd my_appsprint_app
-If you're using another framework, initialize your project as usual.
-
-# Commit daily!
-git add .
-git commit -m "Day 1: project setup and splash screen"
-git push origin main
+git clone https://github.com/ShreyaLbs/AppSprint-2026.git
+cd AppSprint-2026
+npm install
+npx expo start
+```
+To build a release APK:
+```bash
+eas build -p android
 ```
 
-### Step 4 — Submit
-Upload your APK to GitHub Releases + fill the submission form by August 12 at 11:59 PM.
+## Screenshots
+[ADD screenshots of: Home screen, Symptom picker, Follow-up questions,
+Result screen (each urgency color), Explainability panel expanded, History
+screen, Malayalam toggle view]
 
----
+## Demo Video
+[ADD link once recorded — YouTube (public/unlisted) or public Google Drive,
+max 2 minutes]
 
-## All participants must follow our Code of Conduct.
+## APK Download
+[ADD link to GitHub Releases once built]
 
----
+## Important Note
+SymptomBridge provides **urgency triage guidance only** and does **not**
+diagnose medical conditions. It is not a substitute for professional medical
+advice, diagnosis, or treatment. Always consult a qualified doctor or health
+worker for medical concerns.
 
-## 🏆 Prizes & Recognition
-
-| Position | Prize |
-|---|---|
-| 🥇 Winner | Certificate + Feature on  socials |
-| 🥈 Runner-up | Certificate |
-| 🥉 Best UI/UX | Special category certificate |
-| 🏅 Most Innovative | Special category certificate |
-| 🎖️ All participants | Certificate of participation |
-
----
-
-## 👨‍💻 Organized By
-
-**[Deborah Thomas]** — App Development IG Lead, muLearn LBSITW
-
-- GitHub: [@deboraht07](https://github.com/deboraht07/)
-  
-
-
----
-
-## 📄 License
-
-This repository is under the [MIT License](LICENSE).
-
----
-## 💬 Support
-
-Need help?
-
-Use GitHub Discussions for:
-
-- Technical questions
-- Team formation
-- Hackathon announcements
-- General doubts
----
-⭐ If you find this repository useful, consider starring it.
-
-<p align="center">
+## Future Scope
+- Expand training data for the ML classifier with more real-world labeled
+  cases, particularly to close the known recall gap on urgent-case detection
+- Real location-based PHC/hospital lookup (requires connectivity or bundled
+  regional facility data)
+- Additional regional languages beyond Malayalam and English
+- Play Store deployment
   Made with 💜 by App Development IG · muLearn LBSITW
 </p>
